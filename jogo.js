@@ -3,15 +3,16 @@ var largura = 0;
 var classe = 0;
 var tempo = 20;
 var vidas = 1;
+let audio = new Audio('som.mp3');
 var nivel = window.location.search;
 var criamosquitotempo = 1500;
 nivel = nivel.replace('?', '');
 if (nivel === 'normal') {
-    criamosquitotempo = 1500;
+    criamosquitotempo = 2000;
 } else if (nivel === 'dificil') {
-    criamosquitotempo = 1000;
+    criamosquitotempo = 1200;
 } else {
-    criamosquitotempo = 750;
+    criamosquitotempo = 950;
 }
 function ajustarTamanhoPalcoJogo() {
     altura = window.innerHeight;
@@ -20,6 +21,7 @@ function ajustarTamanhoPalcoJogo() {
 }
 ajustarTamanhoPalcoJogo();
 tamanho();
+
 function iniciarjogo() {
     var nivel = document.getElementById('nivel').value;
     if (nivel == '') {
@@ -86,6 +88,9 @@ var tempomosca = setInterval(() => {
     mosquito.style.position = 'absolute';
     mosquito.id = 'mosquito';
     mosquito.onclick = function () {
+        audio.currentTime = 0;
+        audio.play();
+        audio.currentTime = 0;
         this.remove()
     }
     document.body.appendChild(mosquito);
